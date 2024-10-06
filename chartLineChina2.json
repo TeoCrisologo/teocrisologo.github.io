@@ -30,6 +30,5 @@
       "type": "quantitative",
       "axis": {"title": "", "titleColor": "#122B39", "grid": false}
     }
-  },
-  "config": {}
+  }
 }
