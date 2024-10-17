@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "Real Estate Investment",
+    "text": "China: Real Estate Investment",
     "anchor": "start",
-    "subtitle": "Yearly change, % | NBS through ECO API",
+    "subtitle": "Annual % Change | NBS through ECO API",
     "fontSize": "14",
     "subtitleFontSize": "12",
     "color": "#000000",
