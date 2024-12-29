@@ -1,0 +1,20 @@
+country,iso_a3,value,source,classif1,year
+Bolivia,BOL,79.437,LFS - Continuous Employment Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Guatemala,GTM,78.564,HIES - Household Income and Expenditure Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Honduras,HND,75.563,HS - Continous Multi-Purpose Household Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2017
+El Salvador,SLV,67.481,HS - Multi-purpose Household Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Peru,PER,64.963,LFS - Permanent Employment Survey, National,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Paraguay,PRY,61.889,HS - Continuous Permanent Household Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Ecuador,ECU,58.316,LFS - National Survey on Employment, Unemployment and Underemployment,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Dominican Republic,DOM,53.016,LFS - Continuous National Labour Force Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Mexico,MEX,51.886,LFS - National Occupation and Employment Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Colombia,COL,51.41,LFS - Integrated Household Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Panama,PAN,49.996,LFS - Labour Market Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Suriname,SUR,49.798,HIES - Survey on Living Conditions,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2016
+Argentina,ARG,49.766,LFS - Permanent Household Survey, Urban,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Jamaica,JAM,47.779,LFS - Labour Force Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Guyana,GUY,46.611,LFS - Labour Force Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2019
+Brazil,BRA,33.759,HS - Continuous National Household Sample Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Costa Rica,CRI,33.466,LFS - Continuous Employment Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Uruguay,URY,31.877,LFS - Continous Household Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
+Chile,CHL,26.311,LFS - National Employment Survey,Economic activity (Agriculture, Non-Agriculture): Non-agriculture,2023
