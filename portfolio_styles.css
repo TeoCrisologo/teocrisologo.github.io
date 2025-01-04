@@ -9,7 +9,7 @@ body { /* We can style any HTML element by using its name - here we're styling t
   font-family: 'Lato', serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 16px;
+  font-size: 18px;
   color: #333;
   line-height: 1.6;
   /* we want a white page, that's centered and not too wide */
@@ -20,7 +20,7 @@ body { /* We can style any HTML element by using its name - here we're styling t
   overflow-x: visible;
 }
 
-/* Links style - keeps the previous body font */
+/* Links style */
 .links {
   font-family: 'Lato', serif; /* Use Montserrat for links */
   font-size: 16px;
@@ -68,7 +68,7 @@ section {
 /* Links */
 /* We want the links to be a little more visible  and a different color */
 a {
-  color: #065f46;
+  color: #002fa7;
   text-decoration: none;
 }
 
@@ -87,4 +87,11 @@ iframe {
   display: block;
   margin: 0 auto; /* Centers the iframe when using block display */
   max-width: 100%; /* Ensures responsiveness for smaller viewports */
+}
+
+/* Ensure parent containers like figure allow wider elements */
+figure {
+  width: 100%; /* Allows figure to span the full width of the page */
+  text-align: center; /* Ensures content is centered */
+  margin: 20px 0; /* Adds spacing above and below */
 }
