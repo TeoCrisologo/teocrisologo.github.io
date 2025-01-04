@@ -79,3 +79,10 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* General centering rule for all iframes */
+iframe {
+  display: block;
+  margin: 0 auto; /* Centers the iframe when using block display */
+  max-width: 100%; /* Ensures responsiveness for smaller viewports */
+}
