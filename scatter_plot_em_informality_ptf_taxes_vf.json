@@ -4,6 +4,7 @@
   "data": {
     "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/informality_ptf_tax_vf.csv"
   },
+  "view": {"stroke": "transparent"},
   "title": {
     "anchor": "start",
     "align": "left",
@@ -15,7 +16,7 @@
       ""
     ]
   },
-  "width": 500,
+  "width": 450,
   "height": 350,
   "layer": [
     {
@@ -73,6 +74,7 @@
         "color": {
           "field": "WB Region",
           "type": "nominal",
+          "title": null,
           "legend": {
             "orient": "right",
             "direction": "vertical",
@@ -121,7 +123,7 @@
       "mark": {
         "type": "text",
         "color": "black",
-        "x": 470,
+        "x": 430,
         "align": "right",
         "y": 300,
         "size": 14
