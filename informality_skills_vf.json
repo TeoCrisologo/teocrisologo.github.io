@@ -1,0 +1,146 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/regional_informality_analysis.csv"
+  },
+  "view": {"stroke": "transparent"},
+  "title": {
+    "anchor": "start",
+    "align": "left",
+    "text": "Labour Informality and Share of Skilled Workers by Region in Peru, 2023",
+    "subtitle": [
+      "Labour Informality as % of total employment",
+      "Share of Skilled Workers as % of workers with at least tertiary education",
+      "Source: National Household Survey - INEI.",
+      ""
+    ]
+  },
+  "width": 500,
+  "height": 450,
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}}
+      ],
+      "mark": {"type": "circle", "size": 300, "filled": true, "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "share_skilled_workers",
+          "type": "quantitative",
+          "title": "Skilled workers (%)",
+          "scale": {"type": "linear", "domain": [15, 50]},
+          "axis": {
+            "values": [15, 20, 25, 30, 35, 40, 45, 50],
+            "format": ".0f",
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titleFontSize": 14,
+            "labelFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "titlePadding": 6,
+            "labelAngle": 0,
+            "grid": true,
+            "domain": true
+          }
+        },
+        "y": {
+          "field": "informality",
+          "type": "quantitative",
+          "title": ["Labour Informality (%)", ""],
+          "scale": {"domain": [50, 100]},
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titlePadding": 2
+          }
+        },
+        "tooltip": [
+          {"field": "region", "title": "Region"},
+          {
+            "field": "informality",
+            "title": "Labour Informality (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "share_skilled_workers",
+            "title": "Skilled Workers (%)",
+            "format": ".1f"
+          }
+        ],
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.6},
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "black"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [{"param": "hover", "empty": false, "value": 1.5}],
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.25,
+        "strokeDash": [5, 5],
+        "color": "black"
+      },
+      "transform": [
+        {"regression": "informality", "on": "share_skilled_workers"}
+      ],
+      "encoding": {
+        "x": {"field": "share_skilled_workers", "type": "quantitative"},
+        "y": {"field": "informality", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "regression": "informality",
+          "on": "share_skilled_workers",
+          "params": true
+        },
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "black",
+        "x": 490,
+        "align": "right",
+        "y": 390,
+        "size": 14
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    },
+    "axisYQuantitative": {
+      "tickCount": 10,
+      "titleAngle": 0,
+      "titleAlign": "left",
+      "titleBaseline": "line-bottom",
+      "titleX": -5,
+      "titleY": -10
+    }
+  }
+}
