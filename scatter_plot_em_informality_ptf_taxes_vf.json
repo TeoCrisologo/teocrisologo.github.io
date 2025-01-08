@@ -1,8 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": " ",
   "data": {
-    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/main/informality_ptf_tax_vf.csv"
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/informality_ptf_tax_vf.csv"
   },
   "view": {"stroke": "transparent"},
   "title": {
