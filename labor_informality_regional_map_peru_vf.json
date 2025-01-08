@@ -84,7 +84,7 @@
           {
             "field": "informality",
             "type": "quantitative",
-            "title": "Labor Informality (%)",
+            "title": "Labour Informality (%)",
             "format": ".1f"
           },
           {"field": "year", "type": "quantitative", "title": "Year"}
