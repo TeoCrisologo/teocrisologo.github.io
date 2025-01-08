@@ -67,13 +67,19 @@
     <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
     <section>
         <div class="chart-description">
-            <h2>Section 1: Development Challenges</h2>
+            <h2> CC1.  Hosting. Display charts in your own site.</h2>
             <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-                We've organised the page into sections, with each section containing a chart, title and a description. Here, we can describe the chart and give some context.
-                As a first example, we're using a basic chart from our repo.
+            <b>Task:</b> Set up your own Github account and live page using GitHub pages; Add two charts
+            using the vegaEmbed function.
             </p>
         </div>
-        <figure id="Location1"></figure> <!-- we give it an id so we can put a vega-lite graph here with VegaEmbed -->
+
+            <p>
+            In this first task, we have incorporated two charts from the Richard Davies Library.The first chart illustrates the positive correlation between economic development and life expectancy, utilising cross-country data. The second chart showcases the inflationary trends in four advanced G7 economies over the past two decades.
+            </p>
+        
+        <figure id="Location1"></figure> 
+        <figure id="Location2"></figure>
     </section>
 
     <!-- Do you want to add more sections? -->
@@ -113,7 +119,6 @@
 
         let figure_1_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json"; // We're storing the URL of the graph we want to display in a variable
                                                                                                                     // You should have a spec for a graph in this same folder. Just specify its name here, e.g. let figure_1_spec = "chart1.json"
-
         vegaEmbed('#Location1', figure_1_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_1
 
         let figure_2_spec = "https://raw.githubusercontent.com/RDeconomist/RDeconomist.github.io/refs/heads/main/charts/library/chartLine2.json"; // We're storing the URL of the graph we want to display in a variable
