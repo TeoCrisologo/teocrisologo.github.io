@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/informality_ptf_tax_vf.csv"
+  },
+  "view": {"stroke": "transparent"},
+  "title": {
+    "anchor": "start",
+    "align": "left",
+    "text": "Total Factor Productivity, Labour Informality and Tax Revenues in Developing Countries, 2019",
+    "subtitle": [
+      "Total Factor Productivity (TFP) relative to USA (USA=1). Source: Penn World Table (PWT).",
+      "Labour Informality as % of total employment. Source: International Labor Organization (ILO).",
+      "Circle size represents Tax Revenue as % of GDP. Source: International Monetary Fund (IMF).",
+      ""
+    ]
+  },
+  "width": 500,
+  "height": 450,
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}}
+      ],
+      "mark": {"type": "point", "filled": true, "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "informality",
+          "type": "quantitative",
+          "title": "Labour Informality (%)",
+          "scale": {"type": "linear", "domain": [0, 100]},
+          "axis": {
+            "values": [0, 20, 40, 60, 80, 100],
+            "format": ".0f",
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titleFontSize": 14,
+            "labelFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "titlePadding": 6
+          }
+        },
+        "y": {
+          "field": "ctfp",
+          "type": "quantitative",
+          "title": ["Total Factor Productivity (USA=1)", ""],
+          "scale": {"domain": [0, 1]},
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titlePadding": 2
+          }
+        },
+        "tooltip": [
+          {"field": "Country"},
+          {
+            "field": "informality",
+            "title": "Labor Informality (%)",
+            "format": ".1f"
+          },
+          {"field": "ctfp", "title": "TFP (USA=1)", "format": ".2f"},
+          {
+            "field": "taxrevenues",
+            "title": "Tax Revenue (% of GDP)",
+            "format": ".1f"
+          }
+        ],
+        "color": {
+          "field": "WB Region",
+          "type": "nominal",
+          "title": null,
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "title": "Region",
+            "offset": 40
+          }
+        },
+        "size": {
+          "field": "taxrevenues",
+          "type": "quantitative",
+          "title": "Tax Revenue (% of GDP)",
+          "scale": {"scheme": "set1", "range": [10, 800]}
+        },
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.4},
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "black"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [{"param": "hover", "empty": false, "value": 1.5}],
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.25,
+        "strokeDash": [5, 5],
+        "color": "black"
+      },
+      "transform": [{"regression": "ctfp", "on": "informality"}],
+      "encoding": {
+        "x": {"field": "informality", "type": "quantitative"},
+        "y": {"field": "ctfp", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {"regression": "ctfp", "on": "informality", "params": true},
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "black",
+        "x": 475,
+        "align": "right",
+        "y": 340,
+        "size": 14
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    },
+    "axisYQuantitative": {
+      "tickCount": 10,
+      "titleAngle": 0,
+      "titleAlign": "left",
+      "titleBaseline": "line-bottom",
+      "titleX": -5,
+      "titleY": -10
+    }
+  }
+}
