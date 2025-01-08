@@ -1,0 +1,149 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/regional_informality_analysis.csv"
+  },
+  "view": {"stroke": "transparent"},
+  "title": {
+    "anchor": "start",
+    "align": "left",
+    "text": "Labour Informality and Spending on Staff for Tax Enforcement, 2023",
+    "subtitle": [
+      "Labour Informality as % of total employment. Source: National Household Survey - INEI",
+      "Spending on Staff for Tax Enforcement in Thousands of PEN. Source: Ministry of Economy and Finance of Peru",
+      ""
+    ]
+  },
+  "width": 500,
+  "height": 450,
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}}
+      ],
+      "mark": {"type": "circle", "size": 300, "filled": true, "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "ln_tax_enforcement",
+          "type": "quantitative",
+          "title": "Spending on Staff for Tax Enforcement (Thousands of PEN, log scale)",
+          "scale": {"type": "linear", "domain": [0, 12]},
+          "axis": {
+            "values": [0, 2, 4, 6, 8, 10, 12],
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titleFontSize": 14,
+            "labelFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "titlePadding": 6,
+            "labelAngle": 0,
+            "grid": true,
+            "domain": true
+          }
+        },
+        "y": {
+          "field": "informality",
+          "type": "quantitative",
+          "title": ["Labour Informality (%)", ""],
+          "scale": {"domain": [55, 100]},
+          "axis": {
+            "labelFontSize": 14,
+            "titleFontSize": 14,
+            "labelPadding": 5,
+            "titleFontWeight": "bold",
+            "gridOpacity": 0.3,
+            "tickSize": 4,
+            "titlePadding": 2
+          }
+        },
+        "tooltip": [
+          {"field": "region", "title": "Region"},
+          {
+            "field": "informality",
+            "title": "Labour Informality (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "tax_enforcement_exp",
+            "title": "Spending on Tax Enforcement (Thousands of PEN)",
+            "format": ",.0f"
+          }
+        ],
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.6},
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "black"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [{"param": "hover", "empty": false, "value": 1.5}],
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 2.25,
+        "strokeDash": [5, 5],
+        "color": "black"
+      },
+      "transform": [
+        {
+          "regression": "informality",
+          "on": "ln_tax_enforcement",
+          "extent": [3, 11]
+        }
+      ],
+      "encoding": {
+        "x": {"field": "ln_tax_enforcement", "type": "quantitative"},
+        "y": {"field": "informality", "type": "quantitative"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "regression": "informality",
+          "on": "ln_tax_enforcement",
+          "params": true,
+          "method": "linear"
+        },
+        {"calculate": "'R²: '+format(datum.rSquared, '.2f')", "as": "R2"}
+      ],
+      "mark": {
+        "type": "text",
+        "color": "black",
+        "x": 490,
+        "align": "right",
+        "y": 325,
+        "size": 14
+      },
+      "encoding": {"text": {"type": "nominal", "field": "R2"}}
+    }
+  ],
+  "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    },
+    "axisYQuantitative": {
+      "tickCount": 10,
+      "titleAngle": 0,
+      "titleAlign": "left",
+      "titleBaseline": "line-bottom",
+      "titleX": -5,
+      "titleY": -10
+    }
+  }
+}
