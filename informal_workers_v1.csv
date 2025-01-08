@@ -1,8 +1,8 @@
-employment_status,workers
-Self-employed,6086.029
-Salaried labourers,3037.635
-Salaried employees,1799.173
-Family worker (not remunerated),1472.731
-Household workers,344.978
-Employer,337.676
-Other,39.245
+employment_status,workers,share
+Self-employed,6086029,46.3963736291465
+Salaried labourers,3037635,23.1571766103928
+Salaried employees,1799173,13.7158568799906
+Family worker,1472731,11.2272514198054
+Household worker,344978,2.62991322943675
+Employer,337676,2.57424699448453
+Other,39245,0.299181236743344
