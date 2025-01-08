@@ -191,9 +191,16 @@
         </div>
 
             <p>
-            In our second task, we have embedded two charts with relevant information on the slowdown that China's economy has experienced in recent decades. According to the International Monetary Fund (IMF), after three decades of high growth and remarkable socioeconomic achievements, China’s economic growth has decelerated in recent years, reflecting the pandemic, 
-                    a large but needed property market correction, and structural headwinds such as weakening productivity and labor force growth.
+          For this task, I am using two scatter plots that I built for my final project. The first one plots the relationship between total factor productivity, labour informality and tax revenues for a sample of 30 developing countries.
             </p>
+
+        <figure id="Location15"></figure>
+
+            <p>
+          The second chart illustrates the relationship between labour informality rates and the share of skill workers across regions in Peru.
+            </p>
+
+        <figure id="Location16"></figure>
         
     </section> 
     
@@ -221,8 +228,10 @@
         </div>
 
             <p>
-            In our second task, we have embedded two charts with relevant information on the slowdown that China's economy has experienced in recent decades. According to the International Monetary Fund (IMF), after three decades of high growth and remarkable socioeconomic achievements, China’s economic growth has decelerated in recent years, reflecting the pandemic, 
-                    a large but needed property market correction, and structural headwinds such as weakening productivity and labor force growth.
+          In this task, I am embedding one of the charts that I built for my final project. The first one is a map with a slider that allows to assess the evolution of regional labour informality rates in Peru from 2007 to 2023. 
+            
+        <figure id="Location19"></figure>
+                
             </p>
         
     </section> 
@@ -247,6 +256,17 @@
 
         vegaEmbed('#Location4', figure_4_spec) // We're using the vegaEmbed function to put a graph in the element with id figure_3
 
+        let figure_15_spec = "scatter_plot_em_vf.json"; // 
+
+        vegaEmbed('#Location15', figure_15_spec)
+
+        let figure_16_spec = "informality_skills_vf.json"; // 
+
+        vegaEmbed('#Location16', figure_16_spec)
+        
+        let figure_19_spec = "labor_informality_regional_map_peru.json"; // 
+
+        vegaEmbed('#Location19', figure_19_spec)
         // Do you want to add more graphs?
         // try defining a new variable for figure_3_spec, adding VegaEmbed for Location3, and adding a new section in the HTML
         // e.g. 
