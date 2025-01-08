@@ -62,7 +62,7 @@
           "field": "informality",
           "type": "quantitative",
           "scale": {"scheme": "spectral", "reverse": true, "domain": [50, 100]},
-          "title": "Labor Informality (%)"
+          "title": "Labour Informality (%)"
         },
         "fillOpacity": {
           "condition": {"param": "hover", "value": 1},
