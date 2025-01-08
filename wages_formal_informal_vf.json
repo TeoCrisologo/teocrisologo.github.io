@@ -12,7 +12,7 @@
     "anchor": "start",
   },
   "data": {
-    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/main/wages%20formal%20vs%20informal.csv"
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/wages%20formal%20vs%20informal.csv"
   },
   "transform": [
     {
