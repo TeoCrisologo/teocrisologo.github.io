@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive radial chart showing informal workers distribution",
+  "width": 500,
+  "height": 350,
+  "title": {
+    "text": "Distribution of Informal Workers by Employment Status",
+    "subtitle": [
+      "Number of informal workers and share of the total informal labour force, 2023",
+      "Source: National Household Survey - INEI",
+      " "
+    ],
+    "anchor": "start"
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/informal_workers_v1.csv"
+  },
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "mouseover"}}
+      ],
+      "mark": {
+        "type": "arc",
+        "innerRadius": 40,
+        "stroke": "#fff",
+        "strokeWidth": 2,
+        "tooltip": true
+      },
+      "encoding": {
+        "theta": {
+          "field": "workers",
+          "type": "quantitative",
+          "stack": true,
+          "sort": "descending"
+        },
+        "order": {"field": "XXX", "type": "quantitative", "sort": "descending"},
+        "radius": {
+          "field": "workers",
+          "scale": {"type": "sqrt", "rangeMin": 100, "rangeMax": 150}
+        },
+        "color": {
+          "field": "employment_status",
+          "type": "nominal",
+          "scale": {"scheme": "redyellowblue"},
+          "legend": {
+            "title": "Employment Status",
+            "orient": "right",
+            "direction": "vertical",
+            "offset": -90,
+            "padding": 30,
+            "titlePadding": 20
+          },
+          "sort": {"field": "workers", "order": "descending"}
+        },
+        "tooltip": [
+          {"field": "employment_status", "type": "nominal", "title": "Status"},
+          {
+            "field": "workers",
+            "type": "quantitative",
+            "format": ",.0f",
+            "title": "Number of workers"
+          },
+          {
+            "field": "share",
+            "type": "quantitative",
+            "format": ".1f",
+            "title": "Share of total (%)"
+          }
+        ],
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.5}
+      }
+    }
+  ],
+  "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 16,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 16
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    }
+  }
+}

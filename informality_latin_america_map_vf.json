@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Labour Informality Rates by Country in Latin America and the Caribbean",
+    "subtitle": [
+      "Percentage of total employment, 2023 or latest",
+      "Source: International Labor Organization",
+      ""
+    ],
+    "subtitleFontStyle": "normal",
+    "anchor": "start"
+  },
+  "width": 500,
+  "height": 550,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/region_wb_Latin_America_and_Caribbean_subunits.json",
+    "format": {"type": "json", "property": "features"}
+  },
+  "transform": [
+    {"calculate": "datum.properties.sov_a3", "as": "sov_a3"},
+    {
+      "lookup": "sov_a3",
+      "from": {
+        "key": "iso_a3",
+        "fields": ["country", "value", "source"],
+        "data": {
+          "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/labor_informality_latinamerica_v3.csv"
+        }
+      }
+    }
+  ],
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}},
+        {"name": "select", "select": "point"}
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1.25},
+      "encoding": {
+        "color": {
+          "field": "value",
+          "type": "quantitative",
+          "scale": {"scheme": "spectral", "reverse": true, "domain": [0, 80]},
+          "title": "Labour Informality (%)"
+        },
+        "fillOpacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.6
+        },
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "white"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [
+            {"param": "hover", "empty": false, "value": 2},
+            {"param": "select", "empty": false, "value": 2}
+          ],
+          "value": 1
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "Country"},
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Labour Informality (%)",
+            "format": ".1f"
+          },
+          {"field": "source", "type": "nominal", "title": "Source"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "font": "Lato, serif",
+    "view": {"stroke": "transparent"},
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    }
+  }
+}

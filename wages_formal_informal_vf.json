@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive visualization of formal vs informal wages in Peru",
+  "title": {
+    "text": "Wage Differentials between Formal and Informal Workers",
+    "subtitle": [
+      "Monthly wages by employment status and sector, 2023",
+      "Source: National Household Survey - INEI",
+      " "
+    ],
+    "subtitleFontStyle": "normal",
+    "anchor": "start",
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/main/wages%20formal%20vs%20informal.csv"
+  },
+  "transform": [
+    {
+      "calculate": "format(datum.wage, ',.0f') + ' (PEN)'",
+      "as": "formatted_wage"
+    }
+  ],
+  "width": 400,
+  "height": 300,
+  "encoding": {
+    "x": {
+      "field": "wage",
+      "type": "quantitative",
+      "scale": {"domain": [0, 5000]},
+      "title": [" ", "Monthly Wage (PEN)"],
+      "axis": {
+        "format": ",.0f",
+        "grid": true,
+        "gridColor": "#f0f0f0",
+        "tickCount": 5,
+        "labelFontSize": 16,
+        "titleFontSize": 16,
+        "titleFontWeight": "bold"
+      }
+    },
+    "y": {
+      "field": "employment_status",
+      "type": "nominal",
+      "title": ["Employment Status", ""],
+      "axis": {
+        "offset": 10,
+        "ticks": false,
+        "domain": false,
+        "labelFontSize": 16,
+        "titleFontSize": 16,
+        "titleFontWeight": "bold"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 1.25,
+        "strokeDash": [5, 5],
+        "color": "lightgray"
+      },
+      "encoding": {"detail": {"field": "employment_status", "type": "nominal"}}
+    },
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}}
+      ],
+      "mark": {"type": "point", "filled": true, "opacity": 1},
+      "encoding": {
+        "color": {
+          "field": "sector",
+          "type": "nominal",
+          "scale": {"range": ["#4e94c3", "#dc8524"]},
+          "title": "Sector",
+          "legend": {
+            "orient": "right",
+            "direction": "vertical",
+            "offset": 30,
+          }
+        },
+        "size": {"condition": [{"param": "hover", "value": 400}], "value": 300},
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.7},
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "black"},
+          "value": "black"
+        },
+        "strokeWidth": {
+          "condition": [{"param": "hover", "empty": false, "value": 1.5}],
+          "value": 0.8
+        },
+        "tooltip": [
+          {"field": "employment_status", "title": "Status"},
+          {"field": "sector", "title": "Sector"},
+          {
+            "field": "formatted_wage",
+            "type": "nominal",
+            "title": "Monthly Wage"
+          }
+        ]
+      }
+    }
+  ],
+    "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 16,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 16
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    },
+    "axisYPoint": {
+      "titleAngle": 0,
+      "titleAlign": "left",
+      "titleBaseline": "line-bottom",
+      "titleX": -50,
+      "titleY": -10
+    },
+  }
+}

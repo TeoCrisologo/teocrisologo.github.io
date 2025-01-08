@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 450,
+  "height": 500,
+  "title": {
+    "text": "Labour Informality Rates by Region in Peru",
+    "subtitle": [
+      "Percentage of total employment",
+      "Source: National Household Survey - INEI",
+      " "
+    ],
+    "subtitleFontStyle": "normal",
+    "anchor": "start"
+  },
+  "params": [
+    {
+      "name": "selectedYear",
+      "value": 2007,
+      "bind": {
+        "input": "range",
+        "min": 2007,
+        "max": 2023,
+        "step": 1,
+        "name": "Year:"
+      }
+    }
+  ],
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/labor_informality_peru_regional_v1.csv"
+  },
+  "transform": [
+    {
+      "lookup": "department",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/peru_departamental_simple.geojson",
+          "format": {"property": "features"}
+        },
+        "key": "properties.NOMBDEP",
+        "fields": ["type", "geometry", "properties"]
+      }
+    }
+  ],
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}},
+        {"name": "select", "select": "point"}
+      ],
+      "mark": {"type": "geoshape", "fill": "white", "stroke": "white"},
+      "encoding": {
+        "tooltip": [
+          {"field": "properties.NOMBDEP", "type": "nominal", "title": "Region"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1.25},
+      "transform": [{"filter": "datum.year == selectedYear"}],
+      "encoding": {
+        "color": {
+          "field": "informality",
+          "type": "quantitative",
+          "scale": {"scheme": "spectral", "reverse": true, "domain": [50, 100]},
+          "title": "Labor Informality (%)"
+        },
+        "fillOpacity": {
+          "condition": {"param": "hover", "value": 1},
+          "value": 0.5
+        },
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "white"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [
+            {"param": "hover", "empty": false, "value": 2},
+            {"param": "select", "empty": false, "value": 2}
+          ],
+          "value": 1
+        },
+        "tooltip": [
+          {"field": "properties.NOMBDEP", "type": "nominal", "title": "Region"},
+          {
+            "field": "informality",
+            "type": "quantitative",
+            "title": "Labor Informality (%)",
+            "format": ".1f"
+          },
+          {"field": "year", "type": "quantitative", "title": "Year"}
+        ]
+      }
+    }
+  ],
+"config": {
+    "font": "Lato, serif",
+    "view": {"stroke": "transparent"},
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    }
+  }
+}
