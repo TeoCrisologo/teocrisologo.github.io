@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Labour Informality and Formalisation Costs by Income Deciles in Peru, 2023",
+    "subtitle": [
+      "Labour Informality as % of total employment. Source: National Household Survey - INEI",
+      "Formalisation Cost includes Health and Pension Mandatory Contributions",
+      "Source: Own estimates based on de-jure regulatory framework.",
+      ""
+    ],
+    "anchor": "start"
+  },
+  "view": {"stroke": "transparent"},
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/TeoCrisologo/teocrisologo.github.io/refs/heads/main/informality_income_decile.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "labor_income_decile",
+      "type": "nominal",
+      "title": "Labour Income Decile",
+      "sort": " ",
+      "axis": {"labelAngle": 0, "titleFontSize": 16, "labelFontSize": 14}
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {"name": "hover", "select": {"type": "point", "on": "pointerover"}}
+      ],
+      "mark": {"type": "bar", "tooltip": true},
+      "encoding": {
+        "y": {
+          "field": "informality",
+          "type": "quantitative",
+          "title": ["Labour Informality Rate (%)", ""],
+          "axis": {
+            "grid": false,
+            "labelColor": "#4288b5",
+            "titleColor": "#4288b5",
+            "labelFontStyle": "bold",
+            "titleFontSize": 16,
+            "labelFontSize": 14
+          }
+        },
+        "tooltip": [
+          {"field": "labor_income_decile", "title": "Income Decile"},
+          {
+            "field": "informality",
+            "title": "Labour Informality Rate (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "formalization_cost",
+            "title": "Formalisation Cost (%)",
+            "format": ".1f"
+          }
+        ],
+        "opacity": {"condition": {"param": "hover", "value": 1}, "value": 0.7},
+        "stroke": {
+          "condition": {"param": "hover", "empty": false, "value": "lightgray"},
+          "value": "white"
+        },
+        "strokeWidth": {
+          "condition": [{"param": "hover", "empty": false, "value": 1}],
+          "value": 0.8
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "point": {"size": 150, "filled": true, "fill": "#d13c4b"},
+        "strokeWidth": 5
+      },
+      "encoding": {
+        "y": {
+          "field": "formalization_cost",
+          "type": "quantitative",
+          "title": ["Formalisation Cost (% of earned monthly income)", ""],
+          "axis": {
+            "grid": false,
+            "labelColor": "#d13c4b",
+            "titleColor": "#d13c4b",
+            "labelFontStyle": "bold",
+            "titleFontSize": 16,
+            "labelFontSize": 14
+          }
+        },
+        "color": {"value": "#d13c4b"}
+      }
+    }
+  ],
+  "resolve": {"scale": {"y": "independent"}},
+  "config": {
+    "font": "Lato, serif",
+    "legend": {
+      "titleFont": "Lato, serif",
+      "titleFontSize": 14,
+      "titleColor": "#122b39",
+      "labelColor": "#122b39",
+      "labelFontSize": 12
+    },
+    "title": {
+      "font": "Lato, serif",
+      "color": "#122b39",
+      "fontSize": 18,
+      "subtitleFontSize": 16,
+      "subtitleColor": "#676A86"
+    }
+  }
+}
